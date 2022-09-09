@@ -1,3 +1,5 @@
+let displayValue = '';
+
 // Initialize buttons
 const numberButtons = document.querySelectorAll('.number-btn');
 const equalsButton = document.getElementById('equals');
@@ -11,10 +13,10 @@ const lastScreen = document.getElementById('lastOperationScreen');
 const acButton = document.getElementById('AC');
 const ceButton = document.getElementById('CE');
 
-
-
+// Functions
 function appendDisplay(input) {
   currentScreen.textContent += input;
+  displayValue = currentScreen.textContent;
 };
 
 function clearDisplay() {
@@ -25,6 +27,8 @@ function deleteCharFromDisplay() {
   if (currentScreen.textContent)
     currentScreen.textContent = currentScreen.textContent.slice(0, -1);
 }
+
+
 
 // Button event listeners
 numberButtons.forEach((button) => {
