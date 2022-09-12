@@ -1,4 +1,7 @@
 let displayValue = '';
+let firstOperand = null;
+let secondOperand = null;
+let currentOperator = null;
 
 // Initialize buttons
 const numberButtons = document.querySelectorAll('.number-btn');
@@ -8,27 +11,43 @@ const divideButton = document.getElementById('divide');
 const multiplyButton = document.getElementById('multiply');
 const subtractButton = document.getElementById('subtract');
 const addButton = document.getElementById('add');
-const currentScreen = document.getElementById('currentOperationScreen');
+const display = document.getElementById('displayScreen');
 const lastScreen = document.getElementById('lastOperationScreen');
 const acButton = document.getElementById('AC');
 const ceButton = document.getElementById('CE');
 
 // Functions
 function appendDisplay(input) {
-  currentScreen.textContent += input;
-  displayValue = currentScreen.textContent;
+  displayValue += input;
+  display.textContent = displayValue;
 };
 
 function clearDisplay() {
-  currentScreen.textContent = '';
+  displayValue = '';
+  firstOperand = null;
+  secondOperand = null;
+  currentOperator = null;
+  display.textContent = '';
 }
 
 function deleteCharFromDisplay() {
-  if (currentScreen.textContent)
-    currentScreen.textContent = currentScreen.textContent.slice(0, -1);
+  if (display.textContent)
+    display.textContent = display.textContent.slice(0, -1);
 }
 
+function setOperator(operator) {
+  operator = operator;
+}
 
+function operatorButton(operator) {
+  firstOperand = parseInt(displayValue);
+  setOperator(operator);
+  if (firstOperand !== null) {
+    secondOperand = parseInt(displayValue.textContent);
+    displayValue = ''
+  }
+  
+}
 
 // Button event listeners
 numberButtons.forEach((button) => {
@@ -36,12 +55,12 @@ numberButtons.forEach((button) => {
 });
 
 decimalButton.addEventListener('click', () => {
-  if (!currentScreen.textContent.includes('.')) appendDisplay('.');
+  if (!display.textContent.includes('.')) appendDisplay('.');
 });
 
 acButton.addEventListener('click', clearDisplay);
 ceButton.addEventListener('click', deleteCharFromDisplay);
-
+divideButton.addEventListener('click', () => operatorButton('÷'));
 
 
 
@@ -59,7 +78,7 @@ function operate(a, b, operator) {
     case 'x':
       return multiply(a, b);
     case '÷':
-      if (b === 0) return null
+      if (b === 0) return 'Cannot divide by zero';
       return divide(a, b);
     case '+':
       return add(a, b);

@@ -5,37 +5,36 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main class="main">
     <div class="calculator">
-      <div class="screen">
-        <div class="last-screen" id="lastOperationScreen"></div>
-        <div class="current-screen" id="currentOperationScreen"></div>
+      <div class="screen" id="displayScreen"></div>
       </div>
       <div class="buttons-grid">
         <button id="AC" class="btn">AC</button>
         <button id="CE" class="btn">CE</button>
-        <button id="one" class="number-btn">1</button>
-        <button id="two" class="number-btn">2</button>
-        <button id="three" class="number-btn">3</button>
-        <button id="four" class="number-btn">4</button>
-        <button id="five" class="number-btn">5</button>
-        <button id="six" class="number-btn">6</button>
-        <button id="seven" class="number-btn">7</button>
-        <button id="eight" class="number-btn">8</button>
-        <button id="nine" class="number-btn">9</button>
-        <button id="zero" class="number-btn">0</button>
-        <button id="equals" class="btn">=</button>
-        <button id="decimal" class="btn">.</button>
         <button id="divide" class="btn">÷</button>
-        <button id="multiply" class="btn">x</button>
-        <button id="subtract" class="btn">-</button>
+        <button class="operand">1</button>
+        <button class="operand">2</button>
+        <button class="operand">3</button>
         <button id="add" class="btn">+</button>
+        <button class="operand">4</button>
+        <button class="operand">5</button>
+        <button class="operand">6</button>
+        <button id="subtract" class="btn">-</button>
+        <button class="operand">7</button>
+        <button class="operand">8</button>
+        <button class="operand">9</button>
+        <button id="multiply" class="btn">x</button>
+        <button id="sign" class="btn">+/-</button>
+        <button class="operand">0</button>
+        <button id="decimal" class="btn">.</button>
+        <button id="equals" class="btn">=</button>
       </div>
     </div>
   </main>
-  <script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
