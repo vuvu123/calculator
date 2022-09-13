@@ -15,6 +15,7 @@ const display = document.getElementById('displayScreen');
 const lastScreen = document.getElementById('lastOperationScreen');
 const acButton = document.getElementById('AC');
 const ceButton = document.getElementById('CE');
+const negateButton = document.getElementById('sign');
 
 // Functions
 function appendDisplay(input) {
@@ -35,14 +36,10 @@ function deleteCharFromDisplay() {
     display.textContent = display.textContent.slice(0, -1);
 }
 
-function setOperator(operator) {
-  operator = operator;
-}
-
 function operatorButton(operator) {
-  firstOperand = parseInt(displayValue);
-  setOperator(operator);
-  if (firstOperand !== null) {
+  if (firstOperand !== null && secondOperand !== null) {
+    firstOperand = parseInt(displayValue);
+    currentOperator = operator;
     secondOperand = parseInt(displayValue.textContent);
     displayValue = ''
   }
