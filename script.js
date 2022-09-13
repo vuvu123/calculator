@@ -4,7 +4,7 @@ let secondOperand = null;
 let currentOperator = null;
 
 // Initialize buttons
-const numberButtons = document.querySelectorAll('.number-btn');
+const numberButtons = document.querySelectorAll('.operand');
 const equalsButton = document.getElementById('equals');
 const decimalButton = document.getElementById('decimal');
 const divideButton = document.getElementById('divide');
