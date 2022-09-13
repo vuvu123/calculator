@@ -16,9 +16,11 @@ const lastScreen = document.getElementById('lastOperationScreen');
 const acButton = document.getElementById('AC');
 const ceButton = document.getElementById('CE');
 const negateButton = document.getElementById('sign');
+const percentButton = document.getElementById('percent')
 
 // Functions
 function appendDisplay(input) {
+
   displayValue += input;
   display.textContent = displayValue;
 };

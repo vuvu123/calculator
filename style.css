@@ -7,6 +7,7 @@
 :root{
   --olivedrab: #6b8e23;
   --mintcream: #f5fffa;
+  --lightred: #FFCCCB;
 }
 
 body {
@@ -29,6 +30,7 @@ button {
   width: 60px;
   border: 2px solid black;
   border-radius: 5px;
+  font-size: 24px;
 }
 
 .calculator {
@@ -36,7 +38,7 @@ button {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: 5px;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 7px;
   padding: 20px;
   background: lightgrey;
@@ -53,4 +55,12 @@ button {
   border-radius: 7px;
   background-color: white;
   padding: 10px 20px;
+}
+
+#AC {
+  background: var(--lightred);
+}
+
+#CE {
+  background: lightcyan;
 }
