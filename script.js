@@ -41,7 +41,7 @@ function deleteCharFromDisplay() {
     currentScreen.textContent = currentScreen.textContent.slice(0, -1);
 }
 
-function operatorButton(operator) {
+function toOperate(operator) {
   firstOperand = currentScreen.textContent;
   currentOperator = operator;
   lastScreen.textContent = `${firstOperand} ${currentOperator} `
@@ -53,8 +53,15 @@ function clearCurrentScreen() {
   shouldResetScreen = true;
 }
 
+function evaluate() {
+  if (currentOperator !== null) {
+    secondOperand = currentScreen.textContent;
+    currentScreen.textContent = operate(firstOperand, secondOperand, currentOperator);
+  }
+}
+
 function roundNumber() {
-  if ()
+  // if ()
 }
 
 // Button event listeners
@@ -63,7 +70,7 @@ numberButtons.forEach((button) => {
 });
 
 operatorButtons.forEach((button) => {
-  button.addEventListener('click', () => operatorButton(button.textContent));
+  button.addEventListener('click', () => toOperate(button.textContent));
 });
 
 decimalButton.addEventListener('click', () => {
