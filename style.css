@@ -5,13 +5,21 @@
 }
 
 :root{
-  --olivedrab: #6b8e23;
-  --mintcream: #f5fffa;
-  --lightred: #FFCCCB;
+  --calc: lightgray;
+  --btn-background: rgb(255, 255, 255);
+  --btn-background-hover: rgba(243, 243, 243, 0.884);
+  --btn-background-active: rgba(236, 236, 236, 0.74);
+  --CE: #f5fffa;
+  --CE-hover: #ecfff6;
+  --CE-active: #d0ffe7;
+  --AC: #FFCCCB;
+  --AC-hover: #fcbcba;
+  --AC-active: #ffa3a1;
+  
 }
 
 body {
-  background-color: var(--mintcream);;
+  background-color: mintcream;;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
@@ -20,9 +28,42 @@ main {
   display: flex;
   min-height: 95vh;
   justify-content: center;
-  align-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.calculator {
+  gap: 5px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 7px;
+  background-color: gray;
+}
+
+.screen {
+  padding: 5px 20px;
+  border: 2px solid black;
+  background: white;
+  margin-bottom: 10px;
+  text-align: right;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.screen-last {
+  min-height: 32px;
+  font-size: 1em;
+}
+
+.screen-current {
+  min-height: 64px;
+  font-size: 2em;
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
 }
 
 button {
@@ -31,21 +72,20 @@ button {
   border: 2px solid black;
   border-radius: 5px;
   font-size: 24px;
+  background-color: var(--btn-background);
 }
 
-.calculator {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  /* grid-template-rows: repeat(6, 1fr); */
-  gap: 5px;
-  border: 2px solid black;
-  border-radius: 7px;
-  padding: 20px;
-  background: lightgrey;
+button:hover {
+  background-color: var(--btn-background-hover);
 }
 
-#displayScreen {
-  min-height: 80px;
+button:active {
+  background-color: var(--btn-background-active);
+}
+
+/* .screen { */
+  /* grid-column: 1 / -1; */
+  /* min-height: 80px;
   height: auto;
   width: 260px;
   max-width: 260px;
@@ -57,13 +97,29 @@ button {
   border: 2px solid black;
   border-radius: 7px;
   background-color: white;
-  padding: 10px 20px;
-}
+  padding: 10px 20px; */
+/* } */
 
 #AC {
-  background: var(--lightred);
+  background-color: var(--AC);
+}
+
+#AC:hover {
+  background-color: var(--AC-hover);
+}
+
+#AC:active {
+  background-color: var(--AC-active);
 }
 
 #CE {
-  background: lightcyan;
+  background-color: var(--CE);
+}
+
+#CE:hover {
+  background-color: var(--CE-hover);
+}
+
+#CE:active {
+  background-color: var(--CE-active);
 }

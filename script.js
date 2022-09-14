@@ -1,17 +1,14 @@
-let displayValue = '';
 let firstOperand = null;
 let secondOperand = null;
 let currentOperator = null;
+let shouldResetScreen = false;
 
 // Initialize buttons
 const numberButtons = document.querySelectorAll('.operand');
+const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.getElementById('equals');
 const decimalButton = document.getElementById('decimal');
-const divideButton = document.getElementById('divide');
-const multiplyButton = document.getElementById('multiply');
-const subtractButton = document.getElementById('subtract');
-const addButton = document.getElementById('add');
-const display = document.getElementById('displayScreen');
+const currentScreen = document.getElementById('currentOperationScreen');
 const lastScreen = document.getElementById('lastOperationScreen');
 const acButton = document.getElementById('AC');
 const ceButton = document.getElementById('CE');
@@ -19,33 +16,45 @@ const negateButton = document.getElementById('sign');
 const percentButton = document.getElementById('percent')
 
 // Functions
-function appendDisplay(input) {
+function negate() {
+  currentScreen.textContent *= -1;
+}
 
-  displayValue += input;
-  display.textContent = displayValue;
+function convertToPercent() {
+  currentScreen.textContent /= 100;
+}
+
+function appendDisplay(input) {
+  currentScreen.textContent += input;
 };
 
 function clearDisplay() {
-  displayValue = '';
   firstOperand = null;
   secondOperand = null;
   currentOperator = null;
-  display.textContent = '';
+  currentScreen.textContent = '0';
+  lastScreen.textContent = '';
 }
 
 function deleteCharFromDisplay() {
-  if (display.textContent)
-    display.textContent = display.textContent.slice(0, -1);
+  if (currentScreen.textContent)
+    currentScreen.textContent = currentScreen.textContent.slice(0, -1);
 }
 
 function operatorButton(operator) {
-  if (firstOperand !== null && secondOperand !== null) {
-    firstOperand = parseInt(displayValue);
-    currentOperator = operator;
-    secondOperand = parseInt(displayValue.textContent);
-    displayValue = ''
-  }
-  
+  firstOperand = currentScreen.textContent;
+  currentOperator = operator;
+  lastScreen.textContent = `${firstOperand} ${currentOperator} `
+  clearCurrentScreen();
+}
+
+function clearCurrentScreen() {
+  currentScreen.textContent = '';
+  shouldResetScreen = true;
+}
+
+function roundNumber() {
+  if ()
 }
 
 // Button event listeners
@@ -53,16 +62,18 @@ numberButtons.forEach((button) => {
   button.addEventListener('click', () => appendDisplay(button.textContent));
 });
 
+operatorButtons.forEach((button) => {
+  button.addEventListener('click', () => operatorButton(button.textContent));
+});
+
 decimalButton.addEventListener('click', () => {
-  if (!display.textContent.includes('.')) appendDisplay('.');
+  if (!currentScreen.textContent.includes('.')) appendDisplay('.');
 });
 
 acButton.addEventListener('click', clearDisplay);
 ceButton.addEventListener('click', deleteCharFromDisplay);
-divideButton.addEventListener('click', () => operatorButton('÷'));
-
-
-
+negateButton.addEventListener('click', negate);
+percentButton.addEventListener('click', convertToPercent);
 
 let add = (a, b) => a + b;
 let subtract = (a, b) => a - b;
