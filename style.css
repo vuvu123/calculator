@@ -36,7 +36,7 @@ button {
 .calculator {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  /* grid-template-rows: repeat(6, 1fr); */
   gap: 5px;
   border: 2px solid black;
   border-radius: 7px;
@@ -45,12 +45,15 @@ button {
 }
 
 #displayScreen {
-  height: 60px;
+  min-height: 80px;
+  height: auto;
   width: 260px;
   max-width: 260px;
   grid-column: 1 / -1;
   font-size: 2em;
   justify-self: end;
+  text-align: right;
+  word-wrap: break-word;
   border: 2px solid black;
   border-radius: 7px;
   background-color: white;
