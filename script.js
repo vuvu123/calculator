@@ -22,9 +22,11 @@ function negate() {
 
 function convertToPercent() {
   currentScreen.textContent /= 100;
+  roundNumber(currentScreen.textContent);
 }
 
 function appendDisplay(input) {
+  if (currentScreen.textContent === '0' || shouldResetScreen) clearCurrentScreen();
   currentScreen.textContent += input;
 };
 
@@ -50,18 +52,20 @@ function toOperate(operator) {
 
 function clearCurrentScreen() {
   currentScreen.textContent = '';
-  shouldResetScreen = true;
+  shouldResetScreen = false;
+}
+
+function roundNumber(num) {
+  return Math.round(num * 100000) / 100000;
 }
 
 function evaluate() {
-  if (currentOperator !== null) {
-    secondOperand = currentScreen.textContent;
-    currentScreen.textContent = operate(firstOperand, secondOperand, currentOperator);
-  }
-}
+  if (currentOperator === null || shouldResetScreen) return
 
-function roundNumber() {
-  // if ()
+  secondOperand = currentScreen.textContent;
+  lastScreen.textContent += `${secondOperand} =`;
+  currentScreen.textContent = roundNumber(operate(firstOperand, secondOperand, currentOperator));
+  shouldResetScreen = true;
 }
 
 // Button event listeners
@@ -81,6 +85,7 @@ acButton.addEventListener('click', clearDisplay);
 ceButton.addEventListener('click', deleteCharFromDisplay);
 negateButton.addEventListener('click', negate);
 percentButton.addEventListener('click', convertToPercent);
+equalsButton.addEventListener('click', evaluate);
 
 let add = (a, b) => a + b;
 let subtract = (a, b) => a - b;
@@ -88,8 +93,8 @@ let multiply = (a, b) => a * b;
 let divide = (a, b) => a / b;
 
 function operate(a, b, operator) {
-  a = parseInt(a);
-  b = parseInt(b);
+  a = parseFloat(a);
+  b = parseFloat(b);
 
   switch(operator) {
     case 'x':
