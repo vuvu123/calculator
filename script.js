@@ -44,6 +44,7 @@ function deleteCharFromDisplay() {
 }
 
 function toOperate(operator) {
+  if (currentScreen !== null) evaluate()
   firstOperand = currentScreen.textContent;
   currentOperator = operator;
   lastScreen.textContent = `${firstOperand} ${currentOperator} `
@@ -60,7 +61,11 @@ function roundNumber(num) {
 }
 
 function evaluate() {
-  if (currentOperator === null || shouldResetScreen) return
+  if (currentOperator === null || shouldResetScreen) return;
+  if (currentOperator === '÷' && secondOperand === '0') {
+    alert('Cannot divide by zero');
+    return;
+  }
 
   secondOperand = currentScreen.textContent;
   lastScreen.textContent += `${secondOperand} =`;
@@ -100,7 +105,7 @@ function operate(a, b, operator) {
     case 'x':
       return multiply(a, b);
     case '÷':
-      if (b === 0) return 'Cannot divide by zero';
+      if (b === 0) return;
       return divide(a, b);
     case '+':
       return add(a, b);
