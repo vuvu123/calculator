@@ -84,23 +84,6 @@ button:active {
   background-color: var(--btn-background-active);
 }
 
-/* .screen { */
-  /* grid-column: 1 / -1; */
-  /* min-height: 80px;
-  height: auto;
-  width: 260px;
-  max-width: 260px;
-  grid-column: 1 / -1;
-  font-size: 2em;
-  justify-self: end;
-  text-align: right;
-  word-wrap: break-word;
-  border: 2px solid black;
-  border-radius: 7px;
-  background-color: white;
-  padding: 10px 20px; */
-/* } */
-
 #AC {
   background-color: var(--AC);
 }

@@ -15,6 +15,25 @@ const ceButton = document.getElementById('CE');
 const negateButton = document.getElementById('sign');
 const percentButton = document.getElementById('percent')
 
+// Button event listeners
+numberButtons.forEach((button) => {
+  button.addEventListener('click', () => appendDisplay(button.textContent));
+});
+
+operatorButtons.forEach((button) => {
+  button.addEventListener('click', () => toOperate(button.textContent));
+});
+
+decimalButton.addEventListener('click', () => {
+  if (!currentScreen.textContent.includes('.')) appendDisplay('.');
+});
+
+acButton.addEventListener('click', clearDisplay);
+ceButton.addEventListener('click', deleteCharFromDisplay);
+negateButton.addEventListener('click', negate);
+percentButton.addEventListener('click', convertToPercent);
+equalsButton.addEventListener('click', evaluate);
+
 // Functions
 function negate() {
   currentScreen.textContent *= -1;
@@ -48,7 +67,7 @@ function toOperate(operator) {
   firstOperand = currentScreen.textContent;
   currentOperator = operator;
   lastScreen.textContent = `${firstOperand} ${currentOperator} `
-  clearCurrentScreen();
+  shouldResetScreen = true;
 }
 
 function clearCurrentScreen() {
@@ -62,35 +81,16 @@ function roundNumber(num) {
 
 function evaluate() {
   if (currentOperator === null || shouldResetScreen) return;
-  if (currentOperator === '÷' && secondOperand === '0') {
+  if (currentOperator === '÷' && currentScreen.textContent === '0') {
     alert('Cannot divide by zero');
     return;
   }
 
   secondOperand = currentScreen.textContent;
-  lastScreen.textContent += `${secondOperand} =`;
+  lastScreen.textContent = `${firstOperand} ${currentOperator} ${secondOperand} =`;
   currentScreen.textContent = roundNumber(operate(firstOperand, secondOperand, currentOperator));
-  shouldResetScreen = true;
+  currentOperator = null;
 }
-
-// Button event listeners
-numberButtons.forEach((button) => {
-  button.addEventListener('click', () => appendDisplay(button.textContent));
-});
-
-operatorButtons.forEach((button) => {
-  button.addEventListener('click', () => toOperate(button.textContent));
-});
-
-decimalButton.addEventListener('click', () => {
-  if (!currentScreen.textContent.includes('.')) appendDisplay('.');
-});
-
-acButton.addEventListener('click', clearDisplay);
-ceButton.addEventListener('click', deleteCharFromDisplay);
-negateButton.addEventListener('click', negate);
-percentButton.addEventListener('click', convertToPercent);
-equalsButton.addEventListener('click', evaluate);
 
 let add = (a, b) => a + b;
 let subtract = (a, b) => a - b;
@@ -115,4 +115,3 @@ function operate(a, b, operator) {
       return null;
   }
 };
-
